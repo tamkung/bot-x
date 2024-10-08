@@ -60,6 +60,7 @@ def init_and_login():
         time.sleep(2)
 
         try:
+            print("เช็คอีเมลหรือโทรศัพท์")
             verification_field = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.NAME, "text"))
             )
