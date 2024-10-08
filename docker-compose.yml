@@ -1,0 +1,9 @@
+version: '3'
+services:
+  bot-x:
+    build: .
+    volumes:
+      - ./:/app
+    restart: unless-stopped
+    env_file:
+      - ./.env
