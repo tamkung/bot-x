@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
+X_EMAIL = os.getenv('X_EMAIL')
 X_USERNAME = os.getenv('X_USERNAME')
 X_PASSWORD = os.getenv('X_PASSWORD')
 X_URL = os.getenv('X_URL')
@@ -57,7 +58,17 @@ def init_and_login():
         username_field.send_keys(X_USERNAME)
         username_field.send_keys(Keys.RETURN)
         time.sleep(2)
-        
+
+        try:
+            verification_field = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.NAME, "text"))
+            )
+            verification_field.send_keys(X_EMAIL)
+            verification_field.send_keys(Keys.RETURN)
+            time.sleep(2)
+        except Exception as e:
+            print("ไม่พบการขอให้กรอกอีเมลหรือโทรศัพท์")
+
         password_field = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.NAME, "password"))
         )
